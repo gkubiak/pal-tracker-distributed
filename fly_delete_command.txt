@@ -1,0 +1,1 @@
+fly -t pal-concourse destroy-pipeline -p pal-tracker-distributed

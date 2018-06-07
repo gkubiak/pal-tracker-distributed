@@ -49,3 +49,24 @@ cd ~/workspace/assignment-submission
     -PbacklogServerUrl=https://backlog-pal-gk.apps.pikes.pal.pivotal.io \
     -PallocationsServerUrl=https://allocations-pal-gk.apps.pikes.pal.pivotal.io \
     -PtimesheetsServerUrl=https://timesheets-pal-gk.apps.pikes.pal.pivotal.io
+
+
+//for the circuit breaker lab
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/registration -d'{"name": "PeteX"}'
+
+curl -i localhost:8083/accounts?ownerId=5
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/projects -d"{\"name\": \"Project A\", \"accountId\": \"3\"}"
+curl -i -XPOST -H"Content-Type: application/json" localhost:8083/projects -d"{\"name\": \"Project B\", \"accountId\": \"3\"}"
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8081/allocations/ -d"{\"projectId\": \"4\", \"userId\": \"5\", \"firstDay\": \"2015-05-17\", \"lastDay\": \"2015-05-18\"}"
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8081/allocations/ -d"{\"projectId\": \"5\", \"userId\": \"5\", \"firstDay\": \"2015-05-17\", \"lastDay\": \"2015-05-18\"}"
+
+curl -i -XPOST -H"Content-Type: application/json" localhost:8081/allocations/ -d"{\"projectId\": \"4\", \"userId\": \"5\", \"firstDay\": \"2015-05-17\", \"lastDay\": \"2015-05-18\"}"
+
+
+//create service command
+cf create-service p-circuit-breaker-dashboard standard tracker-circuit-breaker-dashboard
+
+

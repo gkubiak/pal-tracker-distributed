@@ -32,3 +32,13 @@ cd ~/workspace/assignment-submission
     -PbacklogServerUrl=https://backlog-pal-gk.apps.pikes.pal.pivotal.io \
     -PallocationsServerUrl=https://allocations-pal-gk.apps.pikes.pal.pivotal.io \
     -PtimesheetsServerUrl=https://timesheets-pal-gk.apps.pikes.pal.pivotal.io
+
+
+//command we used to create the Service Discovery service (Deploy step 1)
+cf create-service p-service-registry standard tracker-service-registry
+
+//to check that the apps had the environment variables defined
+cf env tracker-allocations | grep REGISTRATION_SERVER_ENDPOINT
+cf env tracker-timesheets | grep REGISTRATION_SERVER_ENDPOINT
+cf env tracker-backlog | grep REGISTRATION_SERVER_ENDPOINT
+
